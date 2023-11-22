@@ -16,6 +16,16 @@ print(y)
 from sklearn.model_selection import train_test_split
 x_train, y_train,x_test,y_test=train_test_split(x,y,test_size=0.25,random_state=0)
 
+# Converting the data set into the data form
+
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import OneHotEncoder
+
+ct=ColumnTransformer(transformers=[('encoder',OneHotEncoder(),[3])],remainder='passthrough')
+x[:,2:3]=ct.fit_transform(x[:,2:3])
+print(x[:,2:3])
+
+
 print('x-train :',x_train)
 print('y-tain :',y_train)
 print('x-test :',x_test)
